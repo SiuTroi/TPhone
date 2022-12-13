@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+* {
+  transition: all .3 linear;
+}
+.scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+.scroll::-webkit-scrollbar-track {
+  background: #f6f6f6;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: #115E5C;
+  border-radius: 5rem;
+}
+.active {
+  position: relative;
+  color: black ;
+}
+.active div li span {
+  font-weight: 600 !important;
+}
+.active::before {
+  position: absolute;
+  display: block;
+  content: "";
+  background-color: #fd7f28;
+  border-radius: 50%;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translateX(-50%);
+}
+.border-hover:hover {
+  border: 1px solid #115E5C;
+  transition: all .3s ease-in-out;
+}
+.border-style {
+  border: 1px solid rgba(0,0,0,0.5);
+}
+.border-green {
+  border: 1px solid #115E5C;
+  outline: #115E5C;
+}
+.border-orange {
+  border: 1px solid #fd7f28;
+}
+.border-gray {
+  border: 1px solid #e7e7e7;
+}
+.bg-green-hover:hover {
+  background-color: #115E5C;
+  transition: all .4s ease-in-out;
+}
+.bg-orange-hover:hover {
+  background-color: #fd7f28;
+  border: 1px solid #fd7f28;
+  color: white;
+  transition: all .4s ease-in-out;
+}
+.bg-white-hover:hover {
+  background-color: white;
+  color: #000 !important;
+  transition: all .4s ease-in-out;
+}
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.App {
+  background-color: #f6f6f6;
+  color: #000;
+}
+.z-9999 {
+  z-index: 9999 !important;
+}
+.hover-anim {
+  overflow: hidden;
+  height: 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.hover-anim:hover .first {
+  margin-top: -24px;
+  transition: all .3s ease-in-out;
+  display: block;
+}
+.hover-anim .second {
+  /* margin-top: -20px; */
+  display: block;
+}
+.overlay {
+  position: fixed;
+  left: 0;top: 0;bottom: 0;right: 0;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.showCate {
+  border: 1px solid #9acbd0 !important;
+  background: #9acbd0 !important;
+  color: #fff !important;
+}
+.itemCateActive:active {
+  border: 1px solid #9acbd0 !important;
+  background: #9acbd0 !important;
+  color: #fff !important;
+}
+
+.text-fill {
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: .05em;
+  -webkit-text-fill-color: #f6f6f6;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #115E5C;
+}
+
+.rog {
+  -webkit-text-stroke-width: .5px;
+  letter-spacing: 8px;
+  font-style: normal;
+  font-weight: 900;
+  -webkit-text-fill-color: #acd0d3;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FFFFFF;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.three-dot {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  /* số dòng hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.three-dot-product {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;  /* số dòng hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.after::after {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 17px;
+  left: 0;bottom: 0;
+  z-index: -1;
+  background-color: #fadac5;
+}
+.disabled {
+  opacity: 0.2;
+}
+
+.evaluate {
+  animation: evaluateSlide .4s linear;
+}
+
+.divider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divider:before {
+  width: 100%;
+  height: 1px;
+  display: block;
+  background: #e7eaf3;
+  content: '';
+  margin-right: 15px;
+}
+
+.divider:after {
+  width: 100%;
+  height: 1px;
+  display: block;
+  background: #e7eaf3;
+  content: '';
+  margin-left: 15px;
+}
+
+.amotions:hover img {
+  transform: translateY(-8px);
+  transition: all .3s linear;
+}

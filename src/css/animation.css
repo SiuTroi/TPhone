@@ -1,0 +1,178 @@
+.loading {
+    border: 6px solid #f6f7f9;
+    border-top-color: #fd7f28;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+
+@keyframes showMenu {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes showDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.showMenu {
+    width: 80%;
+    height: 100%;
+    background-color: #f6f6f6;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    animation: showMenu 0.3s linear;
+    z-index: 3;
+}
+
+.showDown:nth-child(1) {
+    animation: showDown .09s linear;
+}
+.showDown:nth-child(2) {
+    animation: showDown .14s linear;
+}
+.showDown:nth-child(3) {
+    animation: showDown .19s linear;
+}
+.showDown:nth-child(4) {
+    animation: showDown .14s linear;
+}
+.showDown:nth-child(5) {
+    animation: showDown .29s linear;
+}
+.showDown:nth-child(6) {
+    animation: showDown .34s linear;
+}
+.showDown:nth-child(7) {
+    animation: showDown .39s linear;
+}
+.showDown:nth-child(8) {
+    animation: showDown .45s linear;
+}
+  
+@keyframes evaluateSlide {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes comingSoon {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.comingsoon {
+    display: flex;
+    align-items: flex-end;
+}
+.comingsoon li {
+    font-size: 32px;
+    font-weight: 600;
+    background: -webkit-linear-gradient(#fd7f28, #eee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 6px;
+}
+.comingsoon li:nth-child(1) {
+    animation: comingSoon .3s ease-in-out;
+}
+.comingsoon li:nth-child(2) {
+    animation: comingSoon .5s ease-in-out;
+}
+.comingsoon li:nth-child(3) {
+    animation: comingSoon .7s ease-in-out;
+}
+.comingsoon li:nth-child(4) {
+    animation: comingSoon .9s ease-in-out;
+}
+.comingsoon li:nth-child(5) {
+    animation: comingSoon 1.1s ease-in-out;
+}
+.comingsoon li:nth-child(6) {
+    animation: comingSoon 1.3s ease-in-out;
+}
+.comingsoon li:nth-child(7) {
+    animation: comingSoon 1.5s ease-in-out;
+}
+.comingsoon li:nth-child(8) {
+    animation: comingSoon 1.7s ease-in-out;
+}
+.comingsoon li:nth-child(9) {
+    animation: comingSoon 1.9s ease-in-out;
+}
+.comingsoon li:nth-child(10) {
+    animation: comingSoon 2.1s ease-in-out;
+}
+.comingsoon li:nth-child(11) {
+    animation: fadeIn 4s ease-in-out infinite;
+    font-size: 16px;
+    transform: translateY(-5px);
+}
+.comingsoon li:nth-child(12) {
+    animation: fadeIn 5s ease-in-out infinite;
+    font-size: 16px;
+    transform: translateY(-5px);
+}
+.comingsoon li:nth-child(13) {
+    animation: fadeIn 6s ease-in-out infinite;
+    font-size: 16px;
+    transform: translateY(-5px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.sell-off-slide {
+    animation: sellOffSlide .4s linear;
+}
+
+@keyframes sellOffSlide {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.checkout-success {
+    animation: checkoutSuccess .6s linear;
+}
+
+@keyframes checkoutSuccess {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
