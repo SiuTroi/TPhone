@@ -58,7 +58,7 @@ const SignUpPage = () => {
           {/* <div className='absolute left-[50%] translate-x-[-50%] translate-y-[-60%]'>
             <img src={freeship} alt="freeship" />
           </div> */}
-        <div className=" mx-auto md:w-[80%] lg:w-[60%] xl:w-[40%] 2xl:w-[30%] overflow-y-scroll scroll">
+        <div className=" mx-auto md:w-[80%] lg:w-[60%] xl:w-[40%] 2xl:w-[30%]">
             <div className="text-right">
               <button className="p-2 rounded-lg bg-[#f6f6f6] shadow-2xl" onClick={() => navigate(-1)}>
                 <AiOutlineClose size={16} />

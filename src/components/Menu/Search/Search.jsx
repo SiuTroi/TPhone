@@ -26,7 +26,7 @@ const Search = ({ setSearchToggle }) => {
                 <div className='hidden md:block md:w-[160px]'>
                     <img className='' src={logo} alt="" />
                 </div>
-                <div className='flex bg-white items-center rounded-xl md:min-w-[400px] md:max-w-[440px]'>
+                <div className='flex bg-white items-center rounded-xl max-w-[440px] md:min-w-[400px] '>
                     <span className="p-3 flex justify-center items-center rounded-xl">
                         <CiSearch />
                     </span>
