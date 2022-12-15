@@ -9,6 +9,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth"
 const firebaseConfig = {
   apiKey: "AIzaSyDFnqlgtKywXyltKj9fZmxV6UVnjGC5BHw",
   authDomain: "siutroi-tphone.vercel.app",
+  databaseURL: "https://tphone-9a576-default-rtdb.firebaseio.com",
   projectId: "tphone-9a576",
   storageBucket: "tphone-9a576.appspot.com",
   messagingSenderId: "812100431235",
