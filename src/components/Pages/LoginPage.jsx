@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ref, child, get, set } from "firebase/database";
-import { database } from "../../firebase";
+import { auth, database, googleProvider } from "../../firebase";
 import { AiOutlineClose } from "react-icons/ai";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import freeship from "../../assets/freeship.png";
 import googlelogo from "../../assets/googlelogo.png";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { signInWithPopup } from "firebase/auth";
 
 const LoginPage = () => {
   const [users, setUsers] = useState([])
@@ -25,19 +27,40 @@ const LoginPage = () => {
       }
     })
   }, [])
-  console.log(users)
+  
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider).then((data) => {
+      set(child(dbRef, `users/${users.length}`), {
+        email: data.user.email,
+        password: "",
+        userid: users.length,
+        username: data.user.displayName
+      })
+      dispatch({
+        type: "USER_SIGNUP",
+        payload: {
+          usersignupid: users.length,
+          signupusername: data.user.displayName,
+          signupemail: data.user.email,
+          signuppassword: ""
+        }
+      })
+      navigate('/')
+      toast.success("Đăng ký thành công!")
+    }) 
+  }
   return (
     <>
       {loading && <div className='overlay z-9999'><div className='absolute-center loading'></div></div>}
       <div className="overlay">
         <div
           className="h-[80vh] w-[96vw] mt-[18vh] mx-auto rounded-xl 
-        bg-white shadow-2xl relative p-8 text-center md:w-full md:h-[100vh] md:mt-0"
+        bg-white shadow-2xl relative p-8 text-center md:w-full md:h-[100vh] md:mt-0 overflow-y-scroll scroll"
         >
           {/* <div className='absolute left-[50%] translate-x-[-50%] translate-y-[-60%]'>
             <img src={freeship} alt="freeship" />
           </div> */}
-          <div className=" mx-auto md:w-[80%] lg:w-[60%] xl:w-[40%] 2xl:w-[30%]">
+          <div className=" mx-auto md:w-[80%] lg:w-[60%] xl:w-[40%] 2xl:w-[30%] overflow-y-scroll scroll">
             <div className="text-right">
               <button
                 className="p-2 rounded-lg bg-[#f6f6f6] shadow-2xl"
@@ -58,7 +81,8 @@ const LoginPage = () => {
             <div className="">
               <button
                 className="w-full flex items-center rounded-2xl 
-                border border-solid border-[#ededed] p-3"
+                border border-solid border-[#ededed] p-3 hover:bg-slate-100" 
+                onClick={handleGoogleSignIn}
               >
                 <img src={googlelogo} width="32" alt="google" />
                 <p className="text-gray-400 flex-1 text-center">

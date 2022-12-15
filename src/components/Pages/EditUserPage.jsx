@@ -30,7 +30,6 @@ const EditUserPage = () => {
     })
   }, [])
 
-  console.log(historycheckout)
   return (
     <>
       {loading && <div className='overlay'><div className='absolute-center loading'></div></div>}
@@ -80,11 +79,17 @@ const EditUserPage = () => {
             )}
           </div>
             <div className='mt-10 lg:w-[60%]'>
-              <div className='flex justify-between items-center mb-8'>
+              <div className='flex justify-between items-center'>
                 <h1 className='text-[21px] font-light'>Chi tiết tài khoản</h1>
                 <button className='w-[12%] flex justify-center items-center text-[14px] md:w-[82px]' onClick={() => {setToggleEdit(!toggleEdit);setEditDone(false)}}>
                   {toggleEdit ? <span className='underline'>Hủy</span> : <img src={pen} alt="edit" />}
                 </button>
+              </div>
+              <div>
+                {editDone && <p className='flex items-center gap-3 mb-6'>
+                <span><AiFillCheckCircle color='green' /></span> 
+                <span className='text-[14px] text-[#7D7D7D] font-semibold'>Đã cập nhật thông tin thành công.</span>
+              </p>}
               </div>
               {toggleEdit ? (
                 <Formik
@@ -103,8 +108,8 @@ const EditUserPage = () => {
                     .email("E-mail không hợp lệ.")
                     .required("Trường này là bắt buộc!"),
                   newPassword: Yup.string().required("Trường này là bắt buộc!"),
-                  oldPassword: Yup.string().matches(`${user.password}`, "Mật khẩu cũ không chính xác!").required("Trường này là bắt buộc!"),
-                  newPasswordConfirmed: Yup.string().oneOf([Yup.ref('newPassword'), null], 'Mật khẩu không khớp!').required("Trường này là bắt buộc!"),
+                  oldPassword: user.password && Yup.string().matches(`${user.password}`, "Mật khẩu cũ không chính xác!").required("Trường này là bắt buộc!"),
+                  newPasswordConfirmed: user.password && Yup.string().oneOf([Yup.ref('newPassword'), null], 'Mật khẩu không khớp!').required("Trường này là bắt buộc!"),
                 })}
                 onSubmit={(values, { setSubmitting }) => {
                   setLoading(true)
@@ -126,6 +131,7 @@ const EditUserPage = () => {
                     })
                     setSubmitting(false);
                     setEditDone(true)
+                    setToggleEdit(false)
                     setLoading(false)
                     navigate("/edituser")
                   }, 1000);
@@ -141,12 +147,6 @@ const EditUserPage = () => {
                   isSubmitting,
                 }) => (
                   <form onSubmit={handleSubmit} className="w-full" id="evaluate-form">
-                    <div>
-                      {editDone && <p className='flex items-center gap-3 mb-6'>
-                      <span><AiFillCheckCircle color='green' /></span> 
-                      <span className='text-[14px] text-[#7D7D7D] font-semibold'>Đã cập nhật thông tin thành công.</span>
-                    </p>}
-                    </div>
                     <div className="flex justify-between">
                       <div className="w-[48%] my-2">
                         <input
@@ -188,13 +188,13 @@ const EditUserPage = () => {
                         className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
                         border border-solid border-[#ededed] p-3"
                         value={values.newEmail}
-                        placeholder="E-mail"
+                        placeholder="E-mail mới"
                       />
                       <p className="text-red-600 text-left font-light text-[12px]">
                         {errors.newEmail && touched.newEmail && errors.newEmail}
                       </p>
                     </div>
-                    <div className="w-full my-4">
+                    {user.password && <div className="w-full my-4">
                       <input
                         type="password"
                         name="oldPassword"
@@ -208,7 +208,7 @@ const EditUserPage = () => {
                       <p className="text-red-600 text-left font-light text-[12px]">
                         {errors.oldPassword && touched.oldPassword && errors.oldPassword}
                       </p>
-                    </div>
+                    </div>}
                     <div className="w-full my-4">
                       <input
                         type="password"
@@ -224,7 +224,7 @@ const EditUserPage = () => {
                         {errors.newPassword && touched.newPassword && errors.newPassword}
                       </p>
                     </div>
-                    <div className="w-full my-4">
+                    {user.password && <div className="w-full my-4">
                       <input
                         type="password"
                         name="newPasswordConfirmed"
@@ -238,7 +238,7 @@ const EditUserPage = () => {
                       <p className="text-red-600 text-left font-light text-[12px]">
                         {errors.newPasswordConfirmed && touched.newPasswordConfirmed && errors.newPasswordConfirmed}
                       </p>
-                    </div>
+                    </div>}
                     <button
                       type="submit"
                       disabled={isSubmitting}

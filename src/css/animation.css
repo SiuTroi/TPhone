@@ -41,6 +41,18 @@
     z-index: 3;
 }
 
+.homeSlide {
+    animation: homeSlide .3s linear;
+}
+@keyframes homeSlide {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .showDown:nth-child(1) {
     animation: showDown .09s linear;
 }

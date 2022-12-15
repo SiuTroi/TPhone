@@ -63,7 +63,7 @@ const HomeSlide = () => {
         {slider.map((item, index) => (
           <div key={index} className='w-full'>
             <img src={item} alt={item} 
-            className="rounded-3xl" />
+            className="rounded-3xl homeSlide" />
           </div>
         ))}
         <div className='absolute left-8 bottom-3 flex gap-1'>
