@@ -8,7 +8,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth"
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDFnqlgtKywXyltKj9fZmxV6UVnjGC5BHw",
-  authDomain: "tphone-9a576.firebaseapp.com",
+  authDomain: "siutroi-tphone.vercel.app",
   projectId: "tphone-9a576",
   storageBucket: "tphone-9a576.appspot.com",
   messagingSenderId: "812100431235",
