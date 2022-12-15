@@ -26,7 +26,8 @@ const SignUpPage = () => {
     })
   }, [])
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = (e) => {
+    e.preventDefault()
     signInWithPopup(auth, googleProvider).then((data) => {
       set(child(dbRef, `users/${users.length}`), {
         email: data.user.email,

@@ -20,9 +20,9 @@ const Search = ({ setSearchToggle }) => {
 
   return (
     <div className='overlay'>
-        <div className='w-full bg-[#f6f6f6] mx-auto h-[90vh] mt-[10vh] shadow-2xl 
+        <div className='w-[98vw] md:w-full bg-[#f6f6f6] mx-auto h-[90vh] mt-[10vh] shadow-2xl 
         rounded-tl-3xl rounded-tr-3xl overflow-hidden relative md:h-[100vh] md:mt-0 md:rounded-none '>
-            <div className='flex justify-around items-center pt-8 md:py-4 md:rounded-full md:border-b-[8px] md:border-solid md:border-[#115e5c]'>
+            <div className='flex justify-around items-center pt-8 px-2 md:py-4 md:rounded-full md:border-b-[8px] md:border-solid md:border-[#115e5c]'>
                 <div className='hidden md:block md:w-[160px]'>
                     <img className='' src={logo} alt="" />
                 </div>
