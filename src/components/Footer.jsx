@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ggpay from "../assets/google-pay.png"
 import americanExpress from "../assets/american-express.png"
 import masterCard from "../assets/master-card.png"
@@ -8,6 +8,7 @@ import paypal from "../assets/paypal.png"
 import viettelpay from "../assets/viettelpay.png"
 import vnpay from "../assets/vnpay.png"
 import zaloPay from "../assets/ZaloPay_Logo.png"
+import { toast } from 'react-toastify';
 
 const pays = [
     ggpay, americanExpress, masterCard, meta, momo, paypal, viettelpay, 
@@ -15,6 +16,7 @@ const pays = [
 ]
 
 const Footer = () => {
+    const [email, setEmail] = useState('')
   return (
     <footer className='bg-[#105b59] px-4 mt-20 pb-16 '>
         <div className='flex flex-col items-center justify-center lg:px-4 xl:mx-[10%] 2xl:mx-[16%] lg:flex-row lg:flex-wrap'>
@@ -24,8 +26,14 @@ const Footer = () => {
                     và những sản phẩm mới nhất của chúng tôi.</p>
                 <div className='flex justify-center flex-wrap gap-4 my-3'>
                     <input type="email" placeholder='E-email' 
-                    className='p-4 rounded-3xl flex-1 outline-[#fe7c22]'/>
-                    <button className='py-4 px-8 rounded-3xl bg-[#fe7c22] bg-green-hover text-white'>Gửi</button>
+                    className='p-4 rounded-3xl flex-1 outline-[#fe7c22]' onChange={(e) => setEmail(e.target.value)}/>
+                    <button className='py-4 px-8 rounded-3xl bg-[#fe7c22] bg-green-hover text-white' 
+                    onClick={() => {
+                        if(email.length > 0) {
+                            toast.success("Gửi thành công")
+                            setEmail('')
+                        }
+                    }}>Gửi</button>
                 </div>
             </div>
             <div className='text-center lg:w-1/2'>
