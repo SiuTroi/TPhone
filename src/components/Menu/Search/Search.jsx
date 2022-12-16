@@ -15,7 +15,7 @@ const Search = ({ setSearchToggle }) => {
     if (!e.target.value) return setProductSearch(hotProducts);
 
     const resultsArray = data.filter((item) =>
-      item.name.toLocaleLowerCase().includes(e.target.value)
+      item.name.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase())
     );
     setProductSearch(resultsArray);
   };
