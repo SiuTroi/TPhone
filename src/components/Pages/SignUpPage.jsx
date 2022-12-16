@@ -90,13 +90,14 @@ const SignUpPage = () => {
             <Formik
               initialValues={{ email: "", password: "", firstName: "", lastName: "", passwordConfirmed: "" }}
               validationSchema={Yup.object({
-                firstName: Yup.string().required("Trường này là bắt buộc!"),
-                lastName: Yup.string().required("Trường này là bắt buộc!"),
+                firstName: Yup.string().required("Họ là bắt buộc!"),
+                lastName: Yup.string().required("Tên là bắt buộc!"),
                 email: Yup.string()
                   .email("E-mail không hợp lệ.")
-                  .required("Trường này là bắt buộc!"),
-                password: Yup.string().required("Trường này là bắt buộc!"),
-                passwordConfirmed: Yup.string().oneOf([Yup.ref('password'), null], 'Mật khẩu không khớp!').required("Trường này là bắt buộc!"),
+                  .notOneOf(users.map(item => item.email), "E-mail đã tồn tại trong hệ thống.")
+                  .required("E-mail là bắt buộc!"),
+                password: Yup.string().min(6, "Mật khẩu chứa ít nhất 6 kí tự.").required("Mật khẩu là bắt buộc!"),
+                passwordConfirmed: Yup.string().oneOf([Yup.ref('password'), null], 'Mật khẩu không khớp!').required("Nhập lại mật khẩu là bắt buộc!"),
               })}
               onSubmit={(values, { setSubmitting }) => {
                 setLoading(true)
@@ -118,8 +119,10 @@ const SignUpPage = () => {
                   })
                   setSubmitting(false);
                   setLoading(false)
-                  navigate(-1)
+                  navigate("/")
+                  toast.success("Đăng ký thành công!!")
                 }, 1000);
+                dispatch({type: "RESET_CART"})
               }}
             >
               {({
@@ -139,8 +142,8 @@ const SignUpPage = () => {
                         name="firstName"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                        border border-solid border-[#ededed] p-3"
+                        className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                        border border-solid p-3 ${errors.firstName && touched.firstName && errors.firstName ? "border-red" : "border-[#ededed]"}`}
                         value={values.firstName}
                         placeholder="Họ"
                       />
@@ -154,8 +157,8 @@ const SignUpPage = () => {
                         name="lastName"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                        border border-solid border-[#ededed] p-3"
+                        className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                        border border-solid p-3 ${errors.lastName && touched.lastName && errors.lastName ? "border-red" : "border-[#ededed]"}`}
                         value={values.lastName}
                         placeholder="Tên"
                       />
@@ -170,8 +173,8 @@ const SignUpPage = () => {
                       name="email"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                      border border-solid border-[#ededed] p-3"
+                      className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                      border border-solid p-3 ${errors.email && touched.email && errors.email ? "border-red" : "border-[#ededed]"}`}
                       value={values.email}
                       placeholder="E-mail"
                     />
@@ -185,8 +188,8 @@ const SignUpPage = () => {
                       name="password"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                      border border-solid border-[#ededed] p-3"
+                      className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                      border border-solid p-3 ${errors.password && touched.password && errors.password ? "border-red" : "border-[#ededed]"}`}
                       value={values.password}
                       placeholder="Mật khẩu"
                     />
@@ -200,8 +203,8 @@ const SignUpPage = () => {
                       name="passwordConfirmed"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                      border border-solid border-[#ededed] p-3"
+                      className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                      border border-solid p-3 ${errors.passwordConfirmed && touched.passwordConfirmed && errors.passwordConfirmed ? "border-red" : "border-[#ededed]"}`}
                       value={values.passwordConfirmed}
                       placeholder="Nhập lại mật khẩu"
                     />

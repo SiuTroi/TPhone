@@ -105,8 +105,8 @@ const ModalPay = ({ setIsShowModalPay }) => {
                                     id="fullName"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
-                                    border border-solid border-[#ededed] p-3"
+                                    className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                                    border border-solid p-3 ${errors.fullName && touched.fullName && errors.fullName ? "border-red" : "border-[#ededed]"}`}
                                     value={values.fullName}
                                     placeholder="Họ tên người nhận. VD: Nguyễn. A"
                                     />
@@ -122,8 +122,8 @@ const ModalPay = ({ setIsShowModalPay }) => {
                                     id="email"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
-                                    border border-solid border-[#ededed] p-3"
+                                    className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                                    border border-solid p-3 ${errors.email && touched.email && errors.email ? "border-red" : "border-[#ededed]"}`}
                                     value={values.email}
                                     placeholder="VD: NguyenA@gmail.com"
                                     />
@@ -139,8 +139,8 @@ const ModalPay = ({ setIsShowModalPay }) => {
                                     id="phone"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
-                                    border border-solid border-[#ededed] p-3"
+                                    className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                                    border border-solid p-3 ${errors.phone && touched.phone && errors.phone ? "border-red" : "border-[#ededed]"}`}
                                     value={values.phone}
                                     placeholder="VD: 0123456789"
                                     />
@@ -156,8 +156,8 @@ const ModalPay = ({ setIsShowModalPay }) => {
                                     id="address"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
-                                    border border-solid border-[#ededed] p-3"
+                                    className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                                    border border-solid p-3 ${errors.address && touched.address && errors.address ? "border-red" : "border-[#ededed]"}`}
                                     value={values.address}
                                     placeholder="VD: 2/27, p.Hiệp Phú, Thủ Đức, HCM"
                                     />

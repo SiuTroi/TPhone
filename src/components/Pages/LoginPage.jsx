@@ -16,6 +16,7 @@ const LoginPage = () => {
   const [users, setUsers] = useState([])
   const user = useSelector((state) => state.UserReducer);
   const [loading, setLoading] = useState(false)
+  const [loginErr, setLoginErr] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dbRef = ref(database);
@@ -27,7 +28,7 @@ const LoginPage = () => {
       }
     })
   }, [])
-  
+
   const handleGoogleSignIn = (e) => {
     e.preventDefault()
     signInWithPopup(auth, googleProvider).then((data) => {
@@ -99,24 +100,31 @@ const LoginPage = () => {
               validationSchema={Yup.object({
                 email: Yup.string()
                   .email("E-mail không hợp lệ.")
-                  .required("Trường này là bắt buộc!"),
-                password: Yup.string().required("Trường này là bắt buộc!"),
+                  .required("E-mail là bắt buộc!"),
+                password: Yup.string().required("Mật khẩu là bắt buộc!"),
               })}
               onSubmit={(values, { setSubmitting }) => {
-                users.map(item => {
-                    if (values.email === item.email && values.password === item.password) {
-                        dispatch({
-                          type: "USER_LOGIN",
-                          payload: {
-                            userid: item.userid,
-                            username: item.username,
-                            email: values.email,
-                            password: values.password,
-                          },
-                        });
-                        navigate(-1);
-                    }
-                })
+                setLoading(true)
+                setTimeout(() => {
+                  users.map(item => {
+                      if (values.email === item.email && values.password === item.password) {
+                          dispatch({
+                            type: "USER_LOGIN",
+                            payload: {
+                              userid: item.userid,
+                              username: item.username,
+                              email: values.email,
+                              password: values.password,
+                            },
+                          });
+                          navigate("/");
+                      } else {
+                        setLoginErr(true)
+                      }
+                  })
+                  setLoading(false)
+                  toast.success("Đăng nhập thành công!!")
+                }, 1800)
               }}
             >
               {({
@@ -133,10 +141,13 @@ const LoginPage = () => {
                     <input
                       type="email"
                       name="email"
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e)
+                        setLoginErr(false)
+                      }}
                       onBlur={handleBlur}
-                      className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
-                      border border-solid border-[#ededed] p-3"
+                      className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                      border border-solid p-3 ${errors.email && touched.email && errors.email ? "border-red" : "border-[#ededed]"}`}
                       value={values.email}
                       placeholder="E-mail"
                     />
@@ -148,22 +159,22 @@ const LoginPage = () => {
                     <input
                       type="password"
                       name="password"
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e)
+                        setLoginErr(false)
+                      }}
                       onBlur={handleBlur}
-                      className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
-                      border border-solid border-[#ededed] p-3"
+                      className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                      border border-solid p-3 ${errors.password && touched.password && errors.password ? "border-red" : "border-[#ededed]"}`}
                       value={values.password}
                       placeholder="********"
                     />
                     <p className="text-red-600 text-left font-light text-[14px]">
                       {errors.password && touched.password && errors.password}
                     </p>
-                    {/* {isSubmitting && <p className="text-red-600 text-left font-light text-[14px]">
-                      {values.email !== users.email ||
-                      values.password !== users.password
-                        ? "Email hoặc mật khẩu không chính xác"
-                        : ""}
-                    </p>} */}
+                    {loginErr && <p className="text-red-600 text-left font-light text-[14px]">
+                      Email hoặc mật khẩu không chính xác
+                    </p>}
                     
                   </div>
                   <button

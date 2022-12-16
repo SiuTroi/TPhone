@@ -87,7 +87,7 @@ const Loudspeaker = () => {
           <div className="h-[50vh] w-full flex justify-center items-center">
             <div>
               <img src={nodata} alt="" className="mx-auto" />
-              <h1 className="text-[#115E5C] text-[24px] mt-4">Hiện tại của hàng chưa có sản phầm nào.</h1>
+              <h1 className="text-[#115E5C] text-[24px] mt-4">Hiện tại của hàng chưa có sản phầm nào cho danh mục này.</h1>
             </div>
           </div>
         )}

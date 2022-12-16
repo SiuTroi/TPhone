@@ -98,14 +98,14 @@ const EditUserPage = () => {
                   newPasswordConfirmed: "" 
                 }}
                 validationSchema={Yup.object({
-                  newFirstName: Yup.string().required("Trường này là bắt buộc!"),
-                  newLastName: Yup.string().required("Trường này là bắt buộc!"),
+                  newFirstName: Yup.string().required("Họ là bắt buộc!"),
+                  newLastName: Yup.string().required("Tên là bắt buộc!"),
                   newEmail: Yup.string()
                     .email("E-mail không hợp lệ.")
-                    .required("Trường này là bắt buộc!"),
-                  newPassword: Yup.string().required("Trường này là bắt buộc!"),
-                  oldPassword: user.password && Yup.string().matches(`${user.password}`, "Mật khẩu cũ không chính xác!").required("Trường này là bắt buộc!"),
-                  newPasswordConfirmed: user.password && Yup.string().oneOf([Yup.ref('newPassword'), null], 'Mật khẩu không khớp!').required("Trường này là bắt buộc!"),
+                    .required("E-mail là bắt buộc!"),
+                  newPassword: Yup.string().required("Mật khẩu mới là bắt buộc!"),
+                  oldPassword: user.password && Yup.string().matches(`${user.password}`, "Mật khẩu cũ không chính xác!").required("Mật khẩu cũ là bắt buộc!"),
+                  newPasswordConfirmed: user.password && Yup.string().oneOf([Yup.ref('newPassword'), null], 'Mật khẩu không khớp!').required("Nhập lại mật khẩu mới là bắt buộc!"),
                 })}
                 onSubmit={(values, { setSubmitting }) => {
                   setLoading(true)
@@ -150,8 +150,8 @@ const EditUserPage = () => {
                           name="newFirstName"
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                          border border-solid border-[#ededed] p-3"
+                          className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                          border border-solid p-3 ${errors.newFirstName && touched.newFirstName && errors.newFirstName ? "border-red" : "border-[#ededed]"}`}
                           value={values.newFirstName}
                           placeholder="Họ"
                         />
@@ -165,8 +165,8 @@ const EditUserPage = () => {
                           name="newLastName"
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                          border border-solid border-[#ededed] p-3"
+                          className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                          border border-solid p-3 ${errors.newLastName && touched.newLastName && errors.newLastName ? "border-red" : "border-[#ededed]"}`}
                           value={values.newLastName}
                           placeholder="Tên"
                         />
@@ -181,8 +181,8 @@ const EditUserPage = () => {
                         name="newEmail"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                        border border-solid border-[#ededed] p-3"
+                        className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                        border border-solid p-3 ${errors.newEmail && touched.newEmail && errors.newEmail ? "border-red" : "border-[#ededed]"}`}
                         value={values.newEmail}
                         placeholder="E-mail mới"
                       />
@@ -196,8 +196,8 @@ const EditUserPage = () => {
                         name="oldPassword"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                        border border-solid border-[#ededed] p-3"
+                        className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                        border border-solid p-3 ${errors.oldPassword && touched.oldPassword && errors.oldPassword ? "border-red" : "border-[#ededed]"}`}
                         value={values.oldPassword}
                         placeholder="Nhập mật khẩu cũ"
                       />
@@ -211,8 +211,8 @@ const EditUserPage = () => {
                         name="newPassword"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                        border border-solid border-[#ededed] p-3"
+                        className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                        border border-solid p-3 ${errors.newPassword && touched.newPassword && errors.newPassword ? "border-red" : "border-[#ededed]"}`}
                         value={values.newPassword}
                         placeholder="nhập mật khẩu mới"
                       />
@@ -226,8 +226,8 @@ const EditUserPage = () => {
                         name="newPasswordConfirmed"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className="w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[12px] font-light 
-                        border border-solid border-[#ededed] p-3"
+                        className={`w-full py-3 px-4 rounded-2xl outline-[#fd802b] text-[14px] font-light 
+                        border border-solid p-3 ${errors.newPasswordConfirmed && touched.newPasswordConfirmed && errors.newPasswordConfirmed ? "border-red" : "border-[#ededed]"}`}
                         value={values.newPasswordConfirmed}
                         placeholder="Nhập lại mật khẩu mới"
                       />
