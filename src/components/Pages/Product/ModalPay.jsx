@@ -6,8 +6,9 @@ import * as Yup from "yup";
 import { AiOutlineClose } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
-const ModalPay = ({ setIsShowModalPay, setCheckoutSucces }) => {
+const ModalPay = ({ setIsShowModalPay }) => {
     const [loading, setLoading] = useState(false);
     const [users, setUsers] = useState([]);
     const { products } = useSelector((state) => state.CartReducer);
@@ -53,7 +54,7 @@ const ModalPay = ({ setIsShowModalPay, setCheckoutSucces }) => {
                 }
     
                 dispatch({ type: "RESET_CART" });
-                setCheckoutSucces(true)
+                toast.success("Thanh toán thành công!!")
                 setIsShowModalPay(false)
                 navigate("/cart")
             }

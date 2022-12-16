@@ -9,6 +9,9 @@ const phoneCategory = () => data.filter(item => item.category === "phone")
 const laptopCategory = () => data.filter(item => item.category === "laptop")
 const tabletCategory = () => data.filter(item => item.category === "tablet")
 const watchCategory = () => data.filter(item => item.category === "watch")
+const networkdeviceCategory = () => data.filter(item => item.category === "networkdevice")
+const loudspeakerCategory = () => data.filter(item => item.category === "loudspeaker")
+const keyboardCategory = () => data.filter(item => item.category === "keyboard")
 const favorite = () => data.filter(item => item.favorite === true);
 const apple = () => data.filter(item=> item.brand === "apple")
 const game = () => data.filter(item => item.type === "gaming")
@@ -21,6 +24,9 @@ export {
     laptopCategory,
     tabletCategory,
     watchCategory,
+    networkdeviceCategory,
+    keyboardCategory,
+    loudspeakerCategory,
     favorite,
     apple,
     game

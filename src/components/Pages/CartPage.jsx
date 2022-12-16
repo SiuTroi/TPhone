@@ -12,18 +12,10 @@ import { useEffect } from 'react';
 
 const CartPage = () => {
   const [isShowModalPay, setIsShowModalPay] = useState(false)
-  const [checkoutSucces, setCheckoutSucces] = useState(false)
   const { products, totalPrice, totalQuantities } = useSelector((state) => state.CartReducer)
   const user = useSelector(state => state.UserReducer)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      setCheckoutSucces(false)
-    }, 8000)
-    return () => clearTimeout(timerId)
-  }, [checkoutSucces])
 
   return (
     <>
@@ -116,15 +108,7 @@ const CartPage = () => {
           )}
         </div>
       </div>
-      {isShowModalPay && <ModalPay setIsShowModalPay={setIsShowModalPay} setCheckoutSucces={setCheckoutSucces} />}
-      {checkoutSucces && 
-      <div className='fixed items-center w-[300px] gap-2 top-4 right-4 bg-[#10B981] rounded-xl z-9999
-      flex checkout-success'>
-          <div className='w-[52px]'>
-            <img src={clapping} alt="clapping" />
-          </div>
-          <p className='flex-1 text-white'>Thanh toán thành công!</p>
-        </div>}
+      {isShowModalPay && <ModalPay setIsShowModalPay={setIsShowModalPay} />}
     </>
   )
 }

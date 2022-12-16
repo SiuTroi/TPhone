@@ -47,7 +47,7 @@ const LoginPage = () => {
         }
       })
       navigate('/')
-      toast.success("Đăng ký thành công!")
+      toast.success("Đăng nhập thành công!")
     }) 
   }
   return (

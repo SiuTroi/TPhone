@@ -49,22 +49,18 @@ const EditUserPage = () => {
               <div className='flex flex-col md:flex-row md:flex-wrap md:gap-2 gap-4 overflow-auto'>
                 {historycheckout.map(item => (
                   <div key={item.id} className='flex flex-col gap-3 shadow-xl bg-white p-8 md:max-w-[49%]'>
-                    <div className='flex justify-between items-center gap-4'>
-                      <div className='flex-1'>
+                    <div className='flex items-center gap-4'>
+                      <div className='w-[20%]'>
                         <img src={item.image} alt="" className='min-w-[66px] max-w-full' />
                       </div>
-                      <div className='w-[40%]'>
-                        <h4 className='font-medium mb-2 three-dot'>{item.name}</h4>
-                        <p className=''>Số lượng: {item.quantity}</p>
-                      </div>
-                      <div className='w-[35%] flex flex-col gap-2 items-end'>
-                        <button onClick={() => dispatch({
-                          type: "REMOVE",
-                          payload: item.id
-                        })}>
-                          <AiOutlineDelete size={22} color="gray" />
-                        </button>
-                        <p className='text-[15px]'>{new Intl.NumberFormat('it-IT', {style : 'currency', currency : 'VND'}).format(item.price)}</p>
+                      <div className='flex flex-col justify-between sm:flex-row sm:items-center flex-1'>
+                        <div className=''>
+                          <h4 className='font-medium mb-2 three-dot'>{item.name}</h4>
+                          <p className=''>Số lượng: {item.quantity}</p>
+                        </div>
+                        <div className='flex flex-col gap-2 sm:items-end'>
+                          <p className='text-[15px]'>{new Intl.NumberFormat('it-IT', {style : 'currency', currency : 'VND'}).format(item.price)}</p>
+                        </div>
                       </div>
                     </div>
                     <div>
