@@ -22,7 +22,7 @@ const SellOff = () => {
   return (
     <div className="mt-20 lg:px-4 xl:mx-[10%] 2xl:mx-[16%]">
       <div className="flex px-4">
-        <div className="bg-white shadow-2xl px-3 py-6 rounded-tl-2xl flex-1 sell-off-slide lg:w-1/2 lg:p-6">
+        <div className="bg-white shadow-2xl p-6 rounded-tl-2xl flex-1 sell-off-slide lg:w-1/2 lg:p-6">
           <p className="text-[#1a181799] font-bold text-[14px] lg:text-[18px]">Điện thoại</p>
           <h3 className="text-[20px] font-semibold text-[#1a1817] lg:text-[28px] ">
           {sellOff[idxSlide].name}
@@ -46,16 +46,16 @@ const SellOff = () => {
             <img
               src={sellOff[idxSlide].image}
               alt={sellOff[idxSlide].name}
-              className="w-[50%] mx-auto lg:hidden"
+              className="w-[68%] md:w-[50%] mx-auto lg:hidden"
             />
           </div>
         </div>
-        <div className="w-[15%] h-full] bg-[#9acbcf] rounded-tr-2xl lg:w-1/2 lg:py-[5rem] lg:flex lg:justify-center lg:items-center">
+        <div className="w-[17%] h-full] bg-[#9acbcf] rounded-tr-2xl lg:w-1/2 lg:py-[2rem] lg:flex lg:justify-center lg:items-center">
           <div className="mt-2 hidden lg:block">
               <img
                 src={sellOff[idxSlide].image}
                 alt={sellOff[idxSlide].name}
-                className="bg-transparent lg:w-[80%] mx-auto"
+                className="bg-transparent lg:w-[60%] mx-auto"
               />
             </div>
         </div>

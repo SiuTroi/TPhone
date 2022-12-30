@@ -65,7 +65,7 @@ const ModalPay = ({ setIsShowModalPay }) => {
     <>
         {loading && <div className='overlay z-9999'><div className='absolute-center loading'></div></div>}
         <div className='overlay flex justify-center items-center'>
-            <div className='bg-white w-[92vw] h-[96vh] relative rounded-2xl shadow-xl px-6 pt-12 lg:w-[70vw] xl:w-[60vw] 2xl:w-[50vw]'>
+            <div className='bg-white w-[92vw] h-[96vh] relative rounded-2xl shadow-xl px-6 pt-12 lg:w-[70vw] xl:w-[60vw] 2xl:w-[50vw] modal-animation'>
                 <button className='absolute top-4 right-4' 
                 onClick={() => setIsShowModalPay(false)}>
                     <AiOutlineClose size={24} />

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import data from "../../../data/data.json";
 import { getFilterProduct, getSortProduct } from "../../../function";
+import { fortmatCurrency } from "../../../utils/fortmatCurrency";
 
 const AllProduct = () => {
   const [filterToggle, setFilterToggle] = useState(false);
@@ -13,6 +15,7 @@ const AllProduct = () => {
   });
   const [filterPrice, setFilterPrice] = useState([]);
   const [sortBrand, setBrand] = useState([]);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -33,9 +36,9 @@ const AllProduct = () => {
 
   const cancelFilter = () => {
     setFilterToggle(false);
-    setFilterPrice([])
-    setBrand([])
-  }
+    setFilterPrice([]);
+    setBrand([]);
+  };
 
   useEffect(() => {
     const getProductByBrand = getSortProduct(filterValue.brand);
@@ -43,7 +46,7 @@ const AllProduct = () => {
   }, [filterValue.brand]);
 
   return (
-    <div className="px-4 pt-44 lg:px-4 xl:mx-[10%] 2xl:mx-[16%]">
+    <div className="category-page pt-40">
       <div className="flex justify-between items-center">
         {filterToggle === false &&
         filterPrice.length === 0 &&
@@ -65,8 +68,8 @@ const AllProduct = () => {
                 <option value="apple">Apple</option>
                 <option value="oppo">Oppo</option>
                 <option value="samsung">Samsung</option>
-                <option value="vivo">vivo</option>
-                <option value="redmi">Redmi</option>
+                <option value="vivo">Vivo</option>
+                <option value="xiaomi">Xiaomi</option>
                 <option value="asus">Asus</option>
               </select>
               <button
@@ -109,16 +112,29 @@ const AllProduct = () => {
         ) : (
           <div className=" w-full flex justify-between items-center">
             <div>
-              <p className="text-[#115e5c] font-semibold text-[18px] ">Kết quả cho bộ lọc</p>
-              {filterPrice.length > 0 && <p>
-                <span className="font-semibold">Giá sản phẩm:</span>  {filterValue.from} - {filterValue.to} VND
-              </p>}
-              {sortBrand.length > 0 && <p>
-                <span className="font-semibold">Thương hiệu: </span>{filterValue.brand.charAt(0).toUpperCase() + filterValue.brand.slice(1)}
-              </p>}
+              <p className="text-[#115e5c] font-semibold text-[18px] ">
+                Kết quả cho bộ lọc
+              </p>
+              {filterPrice.length > 0 && (
+                <p>
+                  <span className="font-semibold">Giá sản phẩm:</span>{" "}
+                  {filterValue.from} - {filterValue.to} VND
+                </p>
+              )}
+              {sortBrand.length > 0 && (
+                <p>
+                  <span className="font-semibold">Thương hiệu: </span>
+                  {filterValue.brand.charAt(0).toUpperCase() +
+                    filterValue.brand.slice(1)}
+                </p>
+              )}
             </div>
-            <button className="border-green px-3 py-1 text-[14px] text-[#333] rounded-xl"
-            onClick={cancelFilter}>Hủy bộ lọc</button>
+            <button
+              className="border-green px-3 py-1 text-[14px] text-[#333] rounded-xl"
+              onClick={cancelFilter}
+            >
+              Hủy bộ lọc
+            </button>
           </div>
         )}
         {filterToggle && (
@@ -150,7 +166,7 @@ const AllProduct = () => {
                     value={filterValue.from}
                     onChange={handleChange}
                   />
-                  đ
+                  VND
                 </div>
                 <div className="flex items-center my-3">
                   <label htmlFor="to" className="w-[15%]">
@@ -164,7 +180,7 @@ const AllProduct = () => {
                     value={filterValue.to}
                     onChange={handleChange}
                   />
-                  đ
+                  VND
                 </div>
               </div>
               <div className="flex justify-end">
@@ -180,80 +196,100 @@ const AllProduct = () => {
         )}
       </div>
       <div>
-        <div className="flex flex-wrap px-2 justify-start gap-2">
+        <div className="wrap-product">
           {filterToggle === false &&
           filterPrice.length === 0 &&
-          sortBrand.length === 0
-            ? data.map((item) => (
-                <div
-                  key={item.id}
-                  className="w-[48%] sm:w-[49%] md:w-[32%] lg:w-[24%] xl:w-[19%] border-hover bg-white rounded-2xl p-3 mt-3 "
-                >
-                  <button className='ml-[82%] p-2 rounded-xl bg-transparent border-style bg-orange-hover'>
-                    <AiOutlinePlus size={12} />
-                  </button>
-                  <Link to={`/product/${item.name}`}>
-                    <div className="mt-3">
-                      <img src={item.image} alt={item.name} />
-                    </div>
-                    <p className="mt-4 three-dot">{item.name}</p>
-                    <h2 className="font-bold">
-                      {new Intl.NumberFormat("it-IT", {
-                        style: "currency",
-                        currency: "VND",
-                      }).format(item.price)}
-                    </h2>
-                    <p className='line-through text-gray-300'>{new Intl.NumberFormat('it-IT', {style : 'currency', currency : 'VND'}).format(item.price * item.old_price)}</p>
-                  </Link>
-                </div>
-              ))
-            : <>
-              {filterPrice.length > 0 && filterPrice.map((item) => (
-                <div
-                  key={item.id}
-                  className="w-[48%] sm:w-[49%] md:w-[32%] lg:w-[24%] xl:w-[19%] border-hover bg-white rounded-2xl p-3 mt-3 "
-                >
-                  <button className='ml-[82%] p-2 rounded-xl bg-transparent border-style bg-orange-hover'>
-                    <AiOutlinePlus size={12} />
-                  </button>
-                  <Link to={`/product/${item.name}`}>
-                    <div className="mt-3">
-                      <img src={item.image} alt={item.name} />
-                    </div>
-                    <p className="mt-4 three-dot">{item.name}</p>
-                    <h2 className="font-bold">
-                      {new Intl.NumberFormat("it-IT", {
-                        style: "currency",
-                        currency: "VND",
-                      }).format(item.price)}
-                    </h2>
-                  </Link>
-                </div>
-              ))}
-              {sortBrand.length > 0 && sortBrand.map((item) => (
-                <div
-                  key={item.id}
-                  className="w-[48%] sm:w-[49%] md:w-[32%] lg:w-[24%] xl:w-[19%] border-hover bg-white rounded-2xl p-3 mt-3 "
-                >
-                  <button className='ml-[82%] p-2 rounded-xl bg-transparent border-style bg-orange-hover'>
-                    <AiOutlinePlus size={12} />
-                  </button>
-                  <Link to={`/product/${item.name}`}>
-                    <div className="mt-3">
-                      <img src={item.image} alt={item.name} />
-                    </div>
-                    <p className="mt-4 three-dot">{item.name}</p>
-                    <h2 className="font-bold">
-                      {new Intl.NumberFormat("it-IT", {
-                        style: "currency",
-                        currency: "VND",
-                      }).format(item.price)}
-                    </h2>
-                    
-                  </Link>
-                </div>
-              ))}
-            </>}
+          sortBrand.length === 0 ? (
+            data.map((item) => (
+              <div key={item.id} className="item-product ">
+                <button className="add-btn" 
+                onClick={() =>
+                  dispatch({
+                    type: "ADD_TO_CART",
+                    payload: { product: item, quantity: 1 },
+                  })
+                }>
+                  <AiOutlinePlus size={12} />
+                </button>
+                <Link to={`/product/${item.name}`}>
+                  <div className="img-product">
+                    <img src={item.image} alt={item.name} className="h-full" />
+                  </div>
+                  <p className="mt-8 mb-2 three-dot">{item.name}</p>
+                  <h2 className="font-bold">
+                    {fortmatCurrency(item.price)}
+                  </h2>
+                  <p className="line-through text-gray-300">
+                    {fortmatCurrency(item.price * item.old_price)}
+                  </p>
+                </Link>
+              </div>
+            ))
+          ) : (
+            <>
+              {filterPrice.length > 0 &&
+                filterPrice.map((item) => (
+                  <div key={item.id} className="item-product ">
+                    <button
+                      className="add-btn"
+                      onClick={() =>
+                        dispatch({
+                          type: "ADD_TO_CART",
+                          payload: { product: item, quantity: 1 },
+                        })
+                      }
+                    >
+                      <AiOutlinePlus size={12} />
+                    </button>
+                    <Link to={`/product/${item.name}`}>
+                      <div className="img-product">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="h-full"
+                        />
+                      </div>
+                      <p className="mt-8 mb-2 three-dot">{item.name}</p>
+                      <h2 className="font-bold">
+                        {fortmatCurrency(item.price)}
+                      </h2>
+                      <p className="text-gray-400 line-through">
+                        {fortmatCurrency(item.price * item.old_price)}
+                      </p>
+                    </Link>
+                  </div>
+                ))}
+              {sortBrand.length > 0 &&
+                sortBrand.map((item) => (
+                  <div key={item.id} className="item-product ">
+                    <button
+                      className="add-btn"
+                      onClick={() =>
+                        dispatch({
+                          type: "ADD_TO_CART",
+                          payload: { product: item, quantity: 1 },
+                        })
+                      }
+                    >
+                      <AiOutlinePlus size={12} />
+                    </button>
+                    <Link to={`/product/${item.name}`}>
+                      <div className="img-product">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="h-full"
+                        />
+                      </div>
+                      <p className="mt-8 mb-2 three-dot">{item.name}</p>
+                      <h2 className="font-bold">
+                        {fortmatCurrency(item.price)}
+                      </h2>
+                    </Link>
+                  </div>
+                ))}
+            </>
+          )}
         </div>
       </div>
 

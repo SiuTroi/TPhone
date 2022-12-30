@@ -68,6 +68,11 @@ const ProductDetail = () => {
                 <div className='mt-12 md:mt-0'>
                     <p className='text-gray-400'>{product?.installment}</p>
                     <h3 className='text-lg'>{product?.name}</h3>
+                    <div className='my-2'>
+                        <span>Tình trang: <span className='text-[#fd7f28]'>Còn hàng</span></span>
+                        <span className='mx-3 font-bold text-gray-500'>|</span>
+                        <span>Thương hiệu: <span className='text-[#fd7f28]'>{product?.brand}</span></span>
+                    </div>
                 </div>
                 <div className='flex items-center gap-4 my-6 md:my-2' >
                     <div className='flex items-center gap-4 border-green rounded-3xl'>

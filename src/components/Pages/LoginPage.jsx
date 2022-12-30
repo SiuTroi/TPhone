@@ -118,13 +118,13 @@ const LoginPage = () => {
                             },
                           });
                           navigate("/");
+                          toast.success("Đăng nhập thành công!!")
                       } else {
                         setLoginErr(true)
                       }
-                  })
-                  setLoading(false)
-                  toast.success("Đăng nhập thành công!!")
-                }, 1800)
+                    })
+                    setLoading(false)
+                  }, 1800)
               }}
             >
               {({
@@ -175,7 +175,6 @@ const LoginPage = () => {
                     {loginErr && <p className="text-red-600 text-left font-light text-[14px]">
                       Email hoặc mật khẩu không chính xác
                     </p>}
-                    
                   </div>
                   <button
                     type="submit"

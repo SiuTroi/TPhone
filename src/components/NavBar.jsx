@@ -65,7 +65,7 @@ const linkCate = [
   },
 ];
 const NavBar = () => {
-  const { totalQuantities } = useSelector((state) => state.CartReducer);
+  const { products } = useSelector((state) => state.CartReducer);
   const user = useSelector((state) => state.UserReducer);
   const [showMenu, setShowMenu] = useState(false);
   const [showCate, setShowCate] = useState(false);
@@ -103,6 +103,9 @@ const NavBar = () => {
                     dispatch({
                       type: "USER_LOGOUT",
                     });
+                    dispatch({
+                      type: "RESET_CART"
+                    })
                     navigate("/");
                   }}
                   className="font-light underline text-center hover-anim"
@@ -142,9 +145,9 @@ const NavBar = () => {
                 <AiOutlineShoppingCart />
                 <p
                   className="absolute -top-[4px] -right-1 text-white 
-                            bg-[#fd7f28] rounded-full px-1 py-[2px]  text-[8px]"
+                            bg-[#fd7f28] rounded-full px-1 py-[2px] text-[8px]"
                 >
-                  {totalQuantities}
+                  {products.length}
                 </p>
               </button>
             </Link>
@@ -204,7 +207,7 @@ const NavBar = () => {
                   {user.userid ? (
                     <Link
                       to={"/edituser"}
-                      className="block w-[48%]"
+                      className="block w-[48%] max-w-full"
                       onClick={() => setShowMenu(false)}
                     >
                       <div className=" relative">
@@ -226,7 +229,7 @@ const NavBar = () => {
                   ) : (
                     <Link
                       to={"/login"}
-                      className="block w-[48%]"
+                      className="block w-[48%] max-w-full"
                       onClick={() => setShowMenu(false)}
                     >
                       <div className=" relative">
@@ -253,7 +256,7 @@ const NavBar = () => {
                     <Link
                       key={item.title}
                       to={item.route}
-                      className="block w-[48%]"
+                      className="block w-[48%] max-w-full"
                       onClick={() => setShowMenu(false)}
                     >
                       <div className=" relative">

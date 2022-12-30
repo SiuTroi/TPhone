@@ -7,7 +7,6 @@ import { Laptop, Phone, Tablet,  Watch,  NetworkDevice,
   KeyBoard,  Loudspeaker} from "./components/Menu/Products/index"
 import { GiftPage, LoginPage, SignUpPage, ContactPage, CartPage, Blog, BlogDetail, 
   FavoritePage, EditUserPage } from "./components/Pages/index"
-import FilterResult from './components/Menu/Filter/FilterResult';
 const HomePage = lazy(() => import('./components/Pages/Home/HomePage'))
 const AllProduct = lazy(() => import('./components/Menu/Products/AllProduct'))
 const ProductDetail = lazy(() => import('./components/Pages/Product/ProductDetail'))
@@ -39,7 +38,6 @@ function App() {
             <Route path='/blog/:blogtitle' element={<BlogDetail />} />
 
             <Route path='/product/:nameproduct' element={<ProductDetail />}/>
-            <Route path='/filterresult' element={<FilterResult />} />
 
             <Route path='/favorite' element={<FavoritePage />} />
             <Route path="/gift" element={<GiftPage />} />

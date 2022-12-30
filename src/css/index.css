@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
   scroll-behavior: smooth;
   font-size: 16px;
 }
@@ -208,4 +208,26 @@
 .amotions:hover img {
   transform: translateY(-8px);
   transition: all .3s linear;
+}
+
+@layer components {
+  .category-page {
+    @apply px-4 mt-20 lg:px-8 xl:px-0 xl:mx-[10%] 2xl:mx-[16%]
+  }
+  .add-btn {
+    @apply ml-[82%] mb-1 p-2 rounded-xl bg-transparent border-style bg-orange-hover
+  }
+  .wrap-product {
+    @apply flex flex-wrap gap-2 xl:justify-start px-2
+  }
+  .item-product {
+    @apply w-[48%] sm:w-[49%] md:w-[32%] lg:w-[24%] xl:w-[19%] h-[22rem] bg-white rounded-2xl p-3 border-hover
+  }
+  .img-product {
+    @apply mt-3 h-[8rem] xl:h-[8.5rem] flex justify-center items-center
+  }
+  .customer-item-product {
+    @apply min-w-[49%] sm:min-w-[33%] md:min-w-[32%] lg:min-w-[24%] xl:min-w-[19%] sm:max-w-[49%] md:max-w-[32%] 
+    lg:max-w-[24%] xl:max-w-[19%] h-[22rem] bg-white rounded-2xl p-3 mt-3 border-hover
+  }
 }

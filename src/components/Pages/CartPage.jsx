@@ -8,6 +8,7 @@ import ModalPay from './Product/ModalPay';
 import cartemty from "../../assets/cartemty.png"
 import clapping from "../../assets/clapping.png"
 import { useEffect } from 'react';
+import { fortmatCurrency } from '../../utils/fortmatCurrency';
 
 
 const CartPage = () => {
@@ -60,7 +61,7 @@ const CartPage = () => {
                       })}>
                         <AiOutlineDelete size={22} className='text-gray-500 hover:text-red-500' />
                       </button>
-                      <p>{new Intl.NumberFormat('it-IT', {style : 'currency', currency : 'VND'}).format(item.price)}</p>
+                      <p>{fortmatCurrency(item.price)}</p>
                     </div>
                   </div>
                 ))}
@@ -74,7 +75,7 @@ const CartPage = () => {
                   </p>}  
                   <div className='flex justify-between items-center font-medium'>
                     <p>Tổng số lượng: ({totalQuantities} sp)</p>
-                    <p>Tổng giá: {new Intl.NumberFormat('it-IT', {style : 'currency', currency : 'VND'}).format(totalPrice)}</p>
+                    <p>Tổng giá: {fortmatCurrency(totalPrice)}</p>
                   </div>
                   {user.userid ? (
                     <button className='flex justify-center items-center w-full py-3 rounded-xl gap-2 bg-[#fd7f28]' 

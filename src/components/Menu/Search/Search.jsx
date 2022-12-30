@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import data from "../../../data/data.json";
 import logo from "../../../assets/logo.png";
+import { fortmatCurrency } from "../../../utils/fortmatCurrency";
 
 const hotProducts = data.slice(36, 44);
 const Search = ({ setSearchToggle }) => {
@@ -56,11 +57,11 @@ const Search = ({ setSearchToggle }) => {
               Kết quả cho tìm kiếm "{valueSearch}"
             </h1>
           ) : (
-            <h1 className="text-[#fe7c22] text-[18px] font-medium mx-4 md:mt-8">
+            <h1 className="text-[#fe7c22] text-[18px] font-medium mx-4 md:mt-8 mb-3">
               Được tìm kiếm nhiều nhất
             </h1>
           )}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-2 mt-4 mb-24">
+          <div className="wrap-product">
             {productSearch.map((item) => (
               <Link
                 to={`/product/${item.name}`}
@@ -69,28 +70,23 @@ const Search = ({ setSearchToggle }) => {
                   setSearchToggle(false);
                   window.scrollTo(0, 0);
                 }}
-                className="flex w-[48%] md:w-[30%] lg:w-[24%] xl:w-[19%]"
+                className="item-product"
               >
-                <div
-                  className="flex flex-col md:mx-1 gap-4 p-4 rounded-xl items-center
-                            bg-white shadow-2xl border-hover"
-                >
-                  <div className="">
-                    <img src={item?.image} alt={item?.image} />
+                <button className="add-btn">
+                <AiOutlinePlus size={12} />
+              </button>
+                  <div className="img-product">
+                    <img src={item?.image} alt={item?.image} className="h-full" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-[18px] font-medium">{item?.name}</h2>
-                    <p className="three-dot text-[13px] font-light">
-                      {item?.description}
-                    </p>
-                    <p className="font-medium">
-                      {new Intl.NumberFormat("it-IT", {
-                        style: "currency",
-                        currency: "VND",
-                      }).format(item.price)}
+                    <h2 className="mt-8 mb-2 three-dot">{item?.name}</h2>
+                    <h2 className="font-bold">
+                      {fortmatCurrency(item.price)}
+                    </h2>
+                    <p className="line-through text-gray-300">
+                      {fortmatCurrency(item.price * item.old_price)}
                     </p>
                   </div>
-                </div>
               </Link>
             ))}
           </div>
